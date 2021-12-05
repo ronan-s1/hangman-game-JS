@@ -124,12 +124,14 @@ function hangman(guess)
 
 			document.getElementById("resultText").innerHTML = "You Win!";
 
-			for (i = 0; i < alphabet.length; i++)
-			{
-				document.getElementById(alphabet[i]).style.backgroundColor = "black";
+			for (i = 65; i <= 90; i++)
+            {
+                let letter = String.fromCharCode(i);
+
+				document.getElementById(letter).style.backgroundColor = "black";
 
 				//hover effect removed
-				document.getElementById(alphabet[i]).style.pointerEvents = "none";
+				document.getElementById(letter).style.pointerEvents = "none";
 			}
         }
     }
@@ -153,13 +155,15 @@ function hangman(guess)
 
 			document.getElementById("resultText").innerHTML = "You lose";
 
-			for (i = 0; i < alphabet.length; i++)
-			{
+			for (i = 65; i <= 90; i++)
+            {
+                let letter = String.fromCharCode(i);
+
 				//changes the button colour to blank
-				document.getElementById(alphabet[i]).style.backgroundColor = "black";
+				document.getElementById(letter).style.backgroundColor = "black";
 
 				//hover effect removed
-				document.getElementById(alphabet[i]).style.pointerEvents = "none";
+				document.getElementById(letter).style.pointerEvents = "none";
 			}
 		}
 	}
