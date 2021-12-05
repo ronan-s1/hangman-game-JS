@@ -174,14 +174,14 @@ function hangman(guess)
 
 	if (last == 0)
 	{
-		document.getElementById("hangman").src = "hangmen/"+name+".png";
+		document.getElementById("hangman").src = "assets/hangmen/"+name+".png";
    	 	document.getElementById("hangman").alt = name;
 	}
 
 	else
 	{
 		name = "hangman0"
-		document.getElementById("hangman").src = "hangmen/"+name+".png";
+		document.getElementById("hangman").src = "assets/hangmen/"+name+".png";
    	 	document.getElementById("hangman").alt = name;
 	}
 
