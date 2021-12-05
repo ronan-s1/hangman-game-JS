@@ -37,11 +37,17 @@ h1{
 
 }
 
-
-.title{
+#replay{
+	font-size: 20px;
 	text-align: center;
-	text-decoration: none;
-	color:black;
+	margin-bottom: 40px;
+	margin-top: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+#replay:hover {
+    text-decoration: underline;
 }
 
 #letters{
@@ -71,6 +77,13 @@ h1{
 #letters button:hover{
 	opacity: 1;
 }
+
+.title{
+	text-align: center;
+	text-decoration: none;
+	color:black;
+}
+
 
 .main_menu{
 	background-color: #9c9c9c;

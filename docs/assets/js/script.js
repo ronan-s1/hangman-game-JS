@@ -122,7 +122,7 @@ function hangman(guess)
 			last = 1;
             document.getElementById("answerText").innerHTML = word_split_array.join("");
 
-			document.getElementById("resultText").innerHTML = "You Win!";
+			document.getElementById("resultText").innerHTML = "You Win! <a id=\"replay\" href = \"javascript:location.reload();\"> Replay<a>?";
 
 			for (i = 65; i <= 90; i++)
             {
