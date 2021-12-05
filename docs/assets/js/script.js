@@ -18,15 +18,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
 });
 
 function addButtons() {
-    var divButtons = "";
 
-    // loop through ascii table for alphabet
-    for (let i = 65; i <= 90; i++) {
-        let letter = String.fromCharCode(i);
-        divButtons += "<button onclick=\"hangman('" + letter + "')\" id=\"" + letter + "\" value=\"" + letter + "\">" + letter + "</button>";
+    if (document.getElementById('letters') != null) {
+        var divButtons = "";
+
+        // loop through ascii table for alphabet
+        for (let i = 65; i <= 90; i++) {
+            let letter = String.fromCharCode(i);
+            divButtons += "<button onclick=\"hangman('" + letter + "')\" id=\"" + letter + "\" value=\"" + letter + "\">" + letter + "</button>";
+        }
+
+        document.getElementById('letters').innerHTML = divButtons;
     }
-
-    document.getElementById('letters').innerHTML = divButtons;
 }
 
 function disableButtons() {
