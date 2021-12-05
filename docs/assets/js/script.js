@@ -158,7 +158,7 @@ function hangman(guess)
             hangmanAsset = "hangman1";
 			document.getElementById("answerText").innerHTML = word_split_array.join("");
 
-			document.getElementById("resultText").innerHTML = "You lose";
+			document.getElementById("resultText").innerHTML = "You lose <a id=\"replay\" href = \"javascript:location.reload();\"> Replay<a>?";
 
             disableButtons();
 		}
