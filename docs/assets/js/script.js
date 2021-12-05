@@ -29,6 +29,19 @@ function addButtons() {
     document.getElementById('letters').innerHTML = divButtons;
 }
 
+function disableButtons() {
+    for (i = 65; i <= 90; i++)
+    {
+        let letter = String.fromCharCode(i);
+
+        document.getElementById(letter).style.backgroundColor = "black";
+
+        //hover effect removed
+        document.getElementById(letter).style.pointerEvents = "none";
+    }
+}
+
+
 function word_choosing()
 {
     user_word  = document.getElementById("users_word").value;
@@ -119,28 +132,20 @@ function hangman(guess)
         // if won
         if (word_split_array.join("") == blank_array.join(""))
         {
-			last = 1;
             document.getElementById("answerText").innerHTML = word_split_array.join("");
 
 			document.getElementById("resultText").innerHTML = "You Win! <a id=\"replay\" href = \"javascript:location.reload();\"> Replay<a>?";
 
-			for (i = 65; i <= 90; i++)
-            {
-                let letter = String.fromCharCode(i);
+            disableButtons();
 
-				document.getElementById(letter).style.backgroundColor = "black";
-
-				//hover effect removed
-				document.getElementById(letter).style.pointerEvents = "none";
-			}
+            hangmanAsset = "hangman0";
         }
     }
-
 
 	// if not won
 	else if (word_split_array.join("") != blank_array.join(""))
 	{
-		// if still alive
+		// if still alive, reduce life
 		if (life > 1)
 		{
 			hangmanAsset = "hangman" + life;
@@ -155,24 +160,10 @@ function hangman(guess)
 
 			document.getElementById("resultText").innerHTML = "You lose";
 
-			for (i = 65; i <= 90; i++)
-            {
-                let letter = String.fromCharCode(i);
-
-				//changes the button colour to blank
-				document.getElementById(letter).style.backgroundColor = "black";
-
-				//hover effect removed
-				document.getElementById(letter).style.pointerEvents = "none";
-			}
+            disableButtons();
 		}
 	}
 
-    if (last != 0) {
-        hangmanAsset = "hangman0";
-    }
-
     document.getElementById("hangman").src = "assets/hangmen/" + hangmanAsset + ".png";
     document.getElementById("hangman").alt = hangmanAsset;
-
 }
