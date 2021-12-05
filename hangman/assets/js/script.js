@@ -15,29 +15,33 @@ var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
 // 	a.style.display = "block";
 // }
 
+document.addEventListener('DOMContentLoaded', function(event) {
+    addButtons();
+});
+
+function addButtons() {
+    var divButtons = "";
+
+    // loop through ascii table for alphabet
+    for (let i = 65; i <= 90; i++) {
+        let letter = String.fromCharCode(i);
+        divButtons += "<button onclick=\"hangman('" + letter + "')\" id=\"" + letter + "\" value=\"" + letter + "\">" + letter + "</button>";
+    }
+
+    document.getElementById('letters').innerHTML = divButtons;
+}
+
 function word_choosing()
 {
     user_word  = document.getElementById("users_word").value;
-	user_word = user_word.toLowerCase();
+	user_word = user_word.toUpperCase();
 
 	//expression that allows a-z
 	var regx = /^[a-zA-Z]*$/;
 	var i;
-	var n;
-
-	//checks if theres atleast 1 letter
-	for (i = 0; i < alphabet.length; i++)
-	{
-		n = user_word.includes(alphabet[i]);
-
-		if (n)
-		{
-			break;
-		}
-	}
 
 	//if valid word
-	if (regx.test(user_word) && user_word != '' && n)
+	if (regx.test(user_word) && user_word != '')
 	{
 		var show_login = document.getElementById("user_word_choose");
 		var show_content = document.getElementById("content");
@@ -46,57 +50,52 @@ function word_choosing()
 		show_login.style.display = 'none';
 
 		//puts word in an array
-		var str = user_word;
-		word_split_array = str.split("");
-		
-		// for testing
-		console.log(word_split_array)
-		
-		// creates array of underscores with length of the random word 
-		for (i = 0; i < word_split_array.length; i++)
-		{
-			blank_array.push("_");
-		}
+		var str = user_word.toUpperCase();
+        word_split_array = str.split("");
 
-		document.getElementById("word").innerHTML = blank_array.join(" ");
+		// for testing
+        console.log(str);
+
+		// creates array of underscores with length of the random word
+        blank_array = Array(str.length).fill("_");
+
+		document.getElementById("answerText").innerHTML = blank_array.join(" ");
 	}
 
     else
     {
-        alert("Please enter a word!")
+        alert("Please enter a word!");
         document.getElementById('users_word').value = '';
     }
 }
 
 
-function random_word()
+function generate_random_word()
 {
-	fetch('words.txt')
-		.then(response => response.text())
-		.then(text => {
-			words_array = text.split('\n');
+    fetch('words.txt')
+        .then(response => response.text())
+        .then(text => {
+            words_array = text.replace(/\r\n/g,'\n').split('\n');
 
-			//generates random word for single player mode
-			random_gen = Math.floor((Math.random() * (words_array.length-1)) + 0)
-			
-            random_word = words_array[random_gen];
-			// console.log(random_word);
+            //generates random word for single player mode
+            random_gen = Math.floor((Math.random() * (words_array.length - 1)) + 0);
 
-			//puts word in an array
-			var str = random_word;
-			word_split_array = str.split("");
-			
+            //puts word in an array
+            var str = words_array[random_gen];
+            str = str.toUpperCase();
+            word_split_array = str.split("");
+
             // for testing
-            console.log(word_split_array)
-			
-			// creates array of underscores with length of the random word 
-            blank_array = Array(random_word.length).fill("_")
+            console.log(str);
 
-		document.getElementById("word").innerHTML = blank_array.join(" ");
-    })
+            // creates array of underscores with length of the random word
+            blank_array = Array(str.length).fill("_");
+
+            document.getElementById("answerText").innerHTML = blank_array.join(" ");
+        });
 }
 
-var name = "hangman"
+var hangmanAsset = "hangman";
 
 function hangman(guess)
 {
@@ -113,17 +112,19 @@ function hangman(guess)
         {
             if (guess == word_split_array[i])
             {
-                blank_array[i] = guess
+                blank_array[i] = guess;
             }
         }
+
+        document.getElementById("answerText").innerHTML = blank_array.join(" ");
 
         // if won
         if (word_split_array.join("") == blank_array.join(""))
         {
 			last = 1;
-            document.getElementById("word").innerHTML = "You Win!";
+            document.getElementById("answerText").innerHTML = word_split_array.join("");
 
-			document.getElementById("word2").innerHTML = "The word was " + word_split_array.join("") + " click HANGMAN to go back to the menu";
+			document.getElementById("resultText").innerHTML = "You Win!";
 
 			for (i = 0; i < alphabet.length; i++)
 			{
@@ -133,32 +134,26 @@ function hangman(guess)
 				document.getElementById(alphabet[i]).style.pointerEvents = "none";
 			}
         }
-        
-        else
-        {
-            document.getElementById("word").innerHTML = blank_array.join(" ");
-        }
     }
 
 
-
 	// if not won
-	else if (!(word_split_array.join("") == blank_array.join("")))
+	else if (word_split_array.join("") != blank_array.join(""))
 	{
 		// if still alive
 		if (life > 1)
 		{
-			name = "hangman"+life;
+			hangmanAsset = "hangman" + life;
 			life--;
 		}
 
 		// lost
 		else
 		{
-			name = "hangman1"
-			document.getElementById("word").innerHTML = "You lose";
+            hangmanAsset = "hangman1";
+			document.getElementById("answerText").innerHTML = word_split_array.join("");
 
-			document.getElementById("word2").innerHTML = "The word was " + word_split_array.join("") + " click HANGMAN to go back to the menu";
+			document.getElementById("resultText").innerHTML = "You lose";
 
 			for (i = 0; i < alphabet.length; i++)
 			{
@@ -168,21 +163,14 @@ function hangman(guess)
 				//hover effect removed
 				document.getElementById(alphabet[i]).style.pointerEvents = "none";
 			}
-
 		}
 	}
 
-	if (last == 0)
-	{
-		document.getElementById("hangman").src = "assets/hangmen/"+name+".png";
-   	 	document.getElementById("hangman").alt = name;
-	}
+    if (last != 0) {
+        hangmanAsset = "hangman0";
+    }
 
-	else
-	{
-		name = "hangman0"
-		document.getElementById("hangman").src = "assets/hangmen/"+name+".png";
-   	 	document.getElementById("hangman").alt = name;
-	}
+    document.getElementById("hangman").src = "assets/hangmen/" + hangmanAsset + ".png";
+    document.getElementById("hangman").alt = hangmanAsset;
 
 }

@@ -3,49 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Hangman - Singleplayer</title>
+		<title>Hangman - Single Player</title>
         	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 		<script src="assets/js/script.js"></script>
 	</head>
-	
+
 	<div id="show_body">
-		<body onload="random_word()">
+		<body onload="generate_random_word()">
 			<a href="index.html" class="title"><h1>HANGMAN</h1></a>
 
 			<div class="hangman_div">
 				<img id="hangman" src="assets/hangmen/hangman.png" alt="hangman">
 			</div>
 
-			<div id="word"></div>
-			<div id="word2"></div>
+			<div id="answerText"></div>
+			<div id="resultText"></div>
 
-			<div class="letters">
-				<button onclick="hangman('a')" id="a" value="a">A</button>
-				<button onclick="hangman('b')" id="b" value="b">B</button>
-				<button onclick="hangman('c')" id="c" value="c">C</button>
-				<button onclick="hangman('d')" id="d" value="d">D</button>
-				<button onclick="hangman('e')" id="e" value="e">E</button>
-				<button onclick="hangman('f')" id="f" value="f">F</button>
-				<button onclick="hangman('g')" id="g" value="g">G</button>
-				<button onclick="hangman('h')" id="h" value="h">H</button>
-				<button onclick="hangman('i')" id="i" value="i">I</button>
-				<button onclick="hangman('j')" id="j" value="j">J</button>
-				<button onclick="hangman('k')" id="k" value="k">K</button>
-				<button onclick="hangman('l')" id="l" value="l">L</button>
-				<button onclick="hangman('m')" id="m" value="m">M</button>
-				<button onclick="hangman('n')" id="n" value="n">N</button>
-				<button onclick="hangman('o')" id="o" value="o">O</button>
-				<button onclick="hangman('p')" id="p" value="p">P</button>
-				<button onclick="hangman('q')" id="q" value="q">Q</button>
-				<button onclick="hangman('r')" id="r" value="r">R</button>
-				<button onclick="hangman('s')" id="s" value="s">S</button>
-				<button onclick="hangman('t')" id="t" value="t">T</button>
-				<button onclick="hangman('u')" id="u" value="u">U</button>
-				<button onclick="hangman('v')" id="v" value="v">V</button>
-				<button onclick="hangman('w')" id="w" value="w">W</button>
-				<button onclick="hangman('x')" id="x" value="x">X</button>
-				<button onclick="hangman('y')" id="y" value="y">Y</button>
-				<button onclick="hangman('z')" id="z" value="z">Z</button>
+			<div id="letters">
 			</div>
 		</body>
 	</div>

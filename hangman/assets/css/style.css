@@ -19,17 +19,17 @@ h1{
 	font-size: 50px;
 }
 
-.letters button.clicked:hover{
+#letters button.clicked:hover{
 	background-color: black;
 }
 
-#word{
+#answerText{
 	font-size: 35px;
 	text-align: center;
 	margin-top: 20px;
 }
 
-#word2{
+#resultText{
 	font-size: 20px;
 	text-align: center;
 	margin-bottom: 40px;
@@ -44,14 +44,14 @@ h1{
 	color:black;
 }
 
-.letters{
+#letters{
 	width: 60%;
 	margin: auto;
 	text-align: center;
 	margin-bottom: 26px;
 }
 
-.letters button{
+#letters button{
 	background-color: #9c9c9c;
 	border: none;
 	color: white;
@@ -68,7 +68,7 @@ h1{
 	font-size: 18px;
 }
 
-.letters button:hover{
+#letters button:hover{
 	opacity: 1;
 }
 
@@ -134,7 +134,7 @@ h1{
 }
 
 @media (max-width: 900px){
-	.letters{
+	#letters{
 		width: 85%;
 	}
 }
