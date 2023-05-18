@@ -3,4 +3,4 @@ hangman game made with js, html and css. Can be played with another person (phys
 
 Play [here](https://ronan-s1.github.io/hangman-game-JS/)
 
-Thanks to [@alan-oregan](https://githubalan-oregan) for contributing!
+Thanks to [@alan-oregan](https://github.com/alan-oregan) for contributing!
